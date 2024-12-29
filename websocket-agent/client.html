@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Assistant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #response {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            height: 200px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hotel Assistant</h1>
+    <input type="text" id="queryInput" placeholder="Enter your query here..." />
+    <button onclick="sendQuery()">Send</button>
+    <div id="response">
+        <strong>Response:</strong>
+        <div id="responseContent"></div>
+    </div>
+
+    <script>
+        const ws = new WebSocket("ws://localhost:8000/ws");
+
+        // Display response on the page
+        ws.onmessage = (event) => {
+            const responseContent = document.getElementById("responseContent");
+            responseContent.innerHTML += event.data + " "; // Append streamed chunks
+            responseContent.scrollTop = responseContent.scrollHeight; // Auto-scroll
+        };
+
+        ws.onerror = (error) => {
+            console.error("WebSocket error:", error);
+            alert("WebSocket connection error. Please check the server.");
+        };
+
+        function sendQuery() {
+            const queryInput = document.getElementById("queryInput");
+            const query = queryInput.value.trim();
+            if (query) {
+                ws.send(query); // Send input to WebSocket
+                queryInput.value = ""; // Clear input field
+                const responseContent = document.getElementById("responseContent");
+                responseContent.innerHTML = ""; // Clear previous response
+            } else {
+                alert("Please enter a query.");
+            }
+        }
+    </script>
+</body>
+</html>
