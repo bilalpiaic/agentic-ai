@@ -11,7 +11,7 @@ prompt_template = ChatPromptTemplate.from_messages(
     [
         SystemMessage(content="You are fruits assistent, you have to act like answer about fruits qustions"),
         SystemMessage(content="Please don't explain anything else, just answer the question related to fruits"),
-         SystemMessage(content="Don't respond if user ask anything other than fruits related questions, always respond in json, your return should be this, this"),
+        SystemMessage(content="Don't respond if user ask anything other than fruits related questions, always respond in json, your return should be this, this"),
     ]
 )
 
