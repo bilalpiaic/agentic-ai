@@ -1,13 +1,9 @@
 from dotenv import load_dotenv
-from sqlmodel import create_engine, SQLModel, Field, Session, select, inspect
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI
+from sqlmodel import create_engine, SQLModel, Field, Session, select
 from contextlib import asynccontextmanager
-from typing import Annotated
 import os
-
-from langchain_community.document_loaders import TextLoader
-from langchain_community.vectorstores import FAISS
-from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import START, StateGraph, END
 from langgraph.prebuilt import tools_condition, ToolNode
