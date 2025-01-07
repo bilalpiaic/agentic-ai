@@ -1,3 +1,18 @@
+Cloud native Applied AI Agentic Developer
+1- Python 
+2- AI Theory - Terminologies
+3- Fast API 
+4- Database ( SQL, No SQL ) 
+5- Third Party libraries, Numpy, pandas, opencv
+6- Model development lifecycle - Keras
+7- LLM - Gemeni / OpenAI / Allama 
+8- LLM Framework - Langchain
+9- Agentic Framework - Langgraph
+10- Cloud computing / devops - docker, kubernetes 
+11- Frontend Nextjs - chatbot UI / Agent frontend
+
+
+
 # How to get started with langchain
 - Python based dev container with using vs code remote explorer
 
