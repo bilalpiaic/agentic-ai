@@ -46,6 +46,14 @@ def index():
 def create_todo(title: str, description: str = None, status: str = "pending") -> Todo:
     """
     Add a new todo to the database.
+
+    Args:
+        title (str): The title of the todo.
+        description (Optional[str]): The description of the todo. Defaults to None.
+        status (str): The status of the todo ("pending", "completed", etc.). Defaults to "pending".
+
+    Returns:
+        Todo: The created todo object.
     """
     todo = Todo(title=title, description=description, status=status)
     with Session(engine) as session:
@@ -57,6 +65,12 @@ def create_todo(title: str, description: str = None, status: str = "pending") ->
 def read_todos(status: str = None) -> list[Todo]:
     """
     Retrieve todos from the database.
+
+    Args:
+        status (Optional[str]): Filter by status. Defaults to None (fetches all todos).
+
+    Returns:
+        List[Todo]: A list of todos matching the criteria.
     """
     with Session(engine) as session:
         statement = select(Todo)
@@ -68,6 +82,15 @@ def read_todos(status: str = None) -> list[Todo]:
 def update_todo(todo_id: int, title: str = None, description: str = None, status: str = None) -> Todo:
     """
     Update a todo in the database.
+
+    Args:
+        todo_id (int): The ID of the todo to update.
+        title (Optional[str]): New title. Defaults to None.
+        description (Optional[str]): New description. Defaults to None.
+        status (Optional[str]): New status. Defaults to None.
+
+    Returns:
+        Optional[Todo]: The updated todo object or None if not found.
     """
     with Session(engine) as session:
         todo = session.get(Todo, todo_id)
@@ -87,6 +110,12 @@ def update_todo(todo_id: int, title: str = None, description: str = None, status
 def delete_todo(todo_id: int) -> bool:
     """
     Delete a todo by ID.
+
+    Args:
+        todo_id (int): The ID of the todo to delete.
+
+    Returns:
+        bool: True if the todo was deleted, False if not found.
     """
     with Session(engine) as session:
         todo = session.get(Todo, todo_id)
