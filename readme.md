@@ -1,15 +1,37 @@
-# How to run repo
-- poetry install
-- Run using fastapi / uvicorn
-   `poetry run uvicorn relativepath:app --reload` change forward slash to dot. and .py to :app 
-   e.g
-   `poetry run uvicorn 09-langgraph.websocket-agent.ws_agent_server_gemini:app --reload`
+
+# How to get started
+- Poetry configuration 
+
+- Poetry install https://python-poetry.org/docs/#installing-with-the-official-installer
+
+``` curl -sSL https://install.python-poetry.org | python3 - ```
+
+- For window install using powershell
+  
+  ``` (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py - ```
+
+- Install all project dependencies ( already created project)
+```
+poetry install
+```
+
+
+## How to run files
 - Run using python
   `poetry run python relatativepath`
   e.g
-  `poetry run python 07-llm-and-prompt-engineering/01_gemeni_llm.py`
+
+  ```poetry run python 07-llm-and-prompt-engineering/01_gemeni_llm.py ```
+
+- Run using fastapi / uvicorn
+   `poetry run uvicorn relativepath:app --reload` change forward slash to dot. and .py to :app 
+   e.g
+
+   ```poetry run uvicorn 09-langgraph.websocket-agent.ws_agent_server_gemini:app --reload```
 
 
+
+## Course Outline
 
 Cloud native Applied AI Agentic Developer
 1- Python 
@@ -25,50 +47,3 @@ Cloud native Applied AI Agentic Developer
 11- Frontend Nextjs - chatbot UI / Agent frontend
 
 ![alt text](outline.png)
-
-# How to get started with langchain
-- Python based dev container with using vs code remote explorer
-
-- Poetry install https://python-poetry.org/docs/#installing-with-the-official-installer
-
-``` curl -sSL https://install.python-poetry.org | python3 - ```
-
-- Lanchain install https://python.langchain.com/v0.1/docs/get_started/installation/
-
-```
-  poetry add langchain-core
-  poetry add langchain-community
-  poetry add langchain-openai
-```
-- Create main.py file
-- Get open ai api key https://platform.openai.com/api-keys
-- Run   poetry add python-dotenv
-
-## Core Langchain Concepts: 
-- from langchain_core.messages import AIMessage,HumanMessage, ToolMessage,BaseMessage
-- from langchain_core.tools import tool
-- from langchain_core.prompts import ChatPromptTemplate
-- from langchain_core.runnables import Runnable, RunnableConfig
-- from langchain_core.utils.function_calling import convert_to_openai_function
-- from langgraph.prebuilt import ToolNode
-- from langgraph.graph import END, StateGraph, START
-- from langgraph.prebuilt import tools_condition
-- from langgraph.graph.message import AnyMessage, add_messages
-- from langgraph.graph import MessagesState, StateGraph, START
-- from langchain.agents import Tool
-- from langchain.utilities import GoogleSerperAPIWrapper
-- from langchain.chains import APIChain
-- from langchain.vectorstores import FAISS
-- from langchain.embeddings import OpenAIEmbeddings
-- from langchain.callbacks.base import AsyncCallbackHandler
-- from langchain.callbacks.manager import AsyncCallbackManager
-- from langchain.chains.conversation.memory import ConversationBufferMemory
-- from langchain.memory import ConversationBufferWindowMemory
-- from langchain.text_splitter import CharacterTextSplitter
-- from langchain.docstore.document import Document
-- from langchain.vectorstores import FAISS
-- from langchain.memory import ConversationBufferMemory
-
-
-
-  
