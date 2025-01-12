@@ -6,7 +6,7 @@ from langgraph.graph.message import add_messages
 from langgraph.checkpoint.memory import MemorySaver
 from langchain_google_genai import ChatGoogleGenerativeAI
 from fastapi import FastAPI
-
+from langchain_core.messages import HumanMessage, SystemMessage
 
 
 from dotenv import load_dotenv
@@ -32,7 +32,13 @@ builder.add_edge("assistant", END)
 checkpointer = MemorySaver()
 graph = builder.compile(checkpointer=checkpointer)
 
-
+while True:
+        user_input = input("Enter your query: ")
+        config = {"configurable": {"thread_id": "1", "user_id": "1"}}
+        messages = graph.invoke({"messages": HumanMessage(content=user_input)}, config)
+        for m in messages['messages']:
+            print(m.content)
+            
 app = FastAPI()
 
 @app.get("/chat/{query}")
