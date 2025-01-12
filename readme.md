@@ -12,9 +12,25 @@
 
 - Install all project dependencies ( already created project)
 ```
-poetry install
+poetry install --no-root
 ```
 
+- To create a new project
+   ``` poetry init ```
+
+- To install new dependencies 
+   ``` poetry add package-name ```
+
+- To remove dependencies 
+   ``` poetry remove package-name ```
+
+
+## How to install Fast API
+``` 
+poetry add "fastapi[standard]"
+poetry add uvicorn
+
+ ```
 
 ## How to run files
 - Run using python
