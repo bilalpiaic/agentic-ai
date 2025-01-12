@@ -1,10 +1,8 @@
-[project]
+[tool.poetry]
 name = "agentic-ai"
 version = "0.1.0"
 description = ""
-authors = [
-    {name = "devnaveedsarwar",email = "learnwithnaveedsarwar@gmail.com"}
-]
+authors = ["devnaveedsarwar <learnwithnaveedsarwar@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
@@ -32,7 +30,6 @@ pymongo = "^4.9.2"
 langgraph-checkpoint="2.0.9"
 langgraph-checkpoint-mongodb="0.1.0"
 
-
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
+requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

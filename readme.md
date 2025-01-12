@@ -1,3 +1,16 @@
+# How to run repo
+- poetry install
+- Run using fastapi / uvicorn
+   `poetry run uvicorn relativepath:app --reload` change forward slash to dot. and .py to :app 
+   e.g
+   `poetry run uvicorn 09-langgraph.websocket-agent.ws_agent_server_gemini:app --reload`
+- Run using python
+  `poetry run python relatativepath`
+  e.g
+  `poetry run python 07-llm-and-prompt-engineering/01_gemeni_llm.py`
+
+
+
 Cloud native Applied AI Agentic Developer
 1- Python 
 2- AI Theory - Terminologies
