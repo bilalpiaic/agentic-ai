@@ -24,7 +24,7 @@ Cloud native Applied AI Agentic Developer
 10- Cloud computing / devops - docker, kubernetes 
 11- Frontend Nextjs - chatbot UI / Agent frontend
 
-
+![alt text](outline.png)
 
 # How to get started with langchain
 - Python based dev container with using vs code remote explorer
