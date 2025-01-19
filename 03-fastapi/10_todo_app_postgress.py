@@ -1,11 +1,47 @@
+from sqlmodel import SQLModel, Field
+from typing import Optional
+from datetime import datetime
+
+from sqlmodel import SQLModel, create_engine
+import os
 from fastapi import FastAPI, HTTPException
 import uvicorn
 from sqlmodel import Session, select
 from dotenv import load_dotenv
 load_dotenv()
 
-from .models.todos import Todos, UpdateTodo, Users
-from .config.db import create_tables, engine
+
+connection_string = os.getenv('DB_URI')
+print(connection_string)
+engine = create_engine(connection_string)
+
+def create_tables():
+    SQLModel.metadata.create_all(engine)
+
+class Users(SQLModel, table=True): # type: ignore
+    id: int = Field(default=None, primary_key=True)
+    email: str
+    phone: str
+    address: str
+    created_at: datetime = Field(default_factory=lambda: datetime.now())
+
+
+class Todos(SQLModel, table=True): # type: ignore
+    id: Optional[int] = Field(default=None, primary_key=True)
+    title: str
+    description: str
+    is_completed: bool
+    user_id: int | None = Field(default=None, foreign_key="users.id")
+    created_at: datetime = Field(default_factory=lambda: datetime.now())
+    
+
+
+class UpdateTodo(SQLModel):
+    title: str | None
+    description: int | None
+    is_completed: bool | None
+
+
 
 app = FastAPI()
 
@@ -44,7 +80,7 @@ def update_todo(id:int, todo: UpdateTodo):
 
 
 @app.post("/create_todo")
-def create_todo(todo: Todos):
+def create_todo2(todo: Todos):
     with Session(engine) as session:
         session.add(todo)
         session.commit()
