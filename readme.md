@@ -1,50 +1,77 @@
+# Getting Started with Poetry and FastAPI
 
-# How to get started
-- Poetry configuration 
+## Poetry Configuration and Installation
 
-- Poetry install https://python-poetry.org/docs/#installing-with-the-official-installer
+### Install Poetry
+- Use the official installer for Poetry:
+  ```bash
+  curl -sSL https://install.python-poetry.org | python3 -
+  ```
+- On Windows (using PowerShell):
+  ```powershell
+  (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
+  ```
 
-``` curl -sSL https://install.python-poetry.org | python3 - ```
+### Install Project Dependencies
+- To install all dependencies for an already created project:
+  ```bash
+  poetry install --no-root
+  ```
 
-- For window install using powershell
-  
-  ``` (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py - ```
+### Create a New Project
+- To initialize a new Poetry project:
+  ```bash
+  poetry init
+  ```
 
-- Install all project dependencies ( already created project)
-```
-poetry install --no-root
-```
+### Manage Dependencies
+- To add a new dependency:
+  ```bash
+  poetry add <package-name>
+  ```
+- To remove a dependency:
+  ```bash
+  poetry remove <package-name>
+  ```
 
-- To create a new project
-   ``` poetry init ```
+---
 
-- To install new dependencies 
-   ``` poetry add package-name ```
+## Installing FastAPI and Uvicorn
+- Add FastAPI with standard dependencies:
+  ```bash
+  poetry add "fastapi[standard]"
+  ```
+- Add Uvicorn (ASGI server):
+  ```bash
+  poetry add uvicorn
+  ```
 
-- To remove dependencies 
-   ``` poetry remove package-name ```
+---
 
+## Running Files
 
-## How to install Fast API
-``` 
-poetry add "fastapi[standard]"
-poetry add uvicorn
+### Run with Python
+- Use `poetry run` to execute Python scripts:
+  ```bash
+  poetry run python <relative-path-to-file>
+  ```
+  Example:
+  ```bash
+  poetry run python 07-llm-and-prompt-engineering/01_gemeni_llm.py
+  ```
 
- ```
+### Run with FastAPI/Uvicorn
+- Use `poetry run` with Uvicorn to serve FastAPI applications:
+  ```bash
+  poetry run uvicorn <relative-path-to-module>:app --reload
+  ```
+  - Replace `/` with `.` in the path, and change `.py` to `:app`.
+  - Example:
+    ```bash
+    poetry run uvicorn 09-langgraph.websocket-agent.ws_agent_server_gemini:app --reload
+    ```
 
-## How to run files
-- Run using python
-  `poetry run python relatativepath`
-  e.g
-
-  ```poetry run python 07-llm-and-prompt-engineering/01_gemeni_llm.py ```
-
-- Run using fastapi / uvicorn
-   `poetry run uvicorn relativepath:app --reload` change forward slash to dot. and .py to :app 
-   e.g
-
-   ```poetry run uvicorn 09-langgraph.websocket-agent.ws_agent_server_gemini:app --reload```
-
+---
 
 
 ## Course Outline
