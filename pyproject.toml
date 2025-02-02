@@ -20,4 +20,5 @@ dependencies = [
     "pymongo>=4.11",
     "langgraph>=0.2.69",
     "streamlit>=1.41.1",
+    "python-multipart>=0.0.20",
 ]
