@@ -38,7 +38,7 @@ def common_dependency():
 #       }
 
 @app.get("/user/")
-def read_root(id: str,name:str,age:int):
+def read_root2(id: str,name:str,age:int):
     try:
         # Your code goes here
         return {
