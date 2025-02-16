@@ -32,8 +32,8 @@ agent1 = Agent(
 # Tasks
 task1 = Task(
     name="Get to know the user",
-    description="Get to know the user and their fitness goals",
-    expected_output="Steps: How to lose weight and get in shape",
+    description="user goal is: {content}",
+    expected_output="Steps:",
     tools=[search_tool],
     agent=agent1
 )
@@ -57,7 +57,7 @@ class StateExampleFlow(Flow[ExampleState]):
 
     @start()
     def first_method(self):
-        result = crew.kickoff(inputs={"input": "sample input"})
+        result = crew.kickoff(inputs={"content": "i want to gain muscle give me steps"}) 
         self.state.message = result.raw
         self.state.counter += 1
 
