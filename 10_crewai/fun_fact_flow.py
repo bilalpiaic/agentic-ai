@@ -1,10 +1,13 @@
 from crewai.flow.flow import Flow, listen, start
 from dotenv import load_dotenv
+
+
 from litellm import completion
 
 
 class ExampleFlow(Flow):
-    model = "gpt-4o-mini"
+    # model = "gpt-4o-mini"
+    model = "gemini/gemini-pro"
 
     @start()
     def generate_city(self):
@@ -25,6 +28,7 @@ class ExampleFlow(Flow):
         random_city = response["choices"][0]["message"]["content"]
         # Store the city in our state
         self.state["city"] = random_city
+
         print(f"Random City: {random_city}")
 
         return random_city
@@ -48,7 +52,7 @@ class ExampleFlow(Flow):
 
 
 
-flow = ExampleFlow(inputs  = {"country": "Pakistan"})
+flow = ExampleFlow()
 result = flow.kickoff()
 
 print(f"Generated fun fact: {result}")
