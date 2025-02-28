@@ -7,7 +7,8 @@ from litellm import completion
 
 class ExampleFlow(Flow):
     # model = "gpt-4o-mini"
-    model = "gemini/gemini-pro"
+    # model = "gemini/gemini-pro"
+    model = "gemini/gemini-1.5-flash"
 
     @start()
     def generate_city(self):
