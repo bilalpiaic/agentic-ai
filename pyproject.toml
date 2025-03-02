@@ -24,4 +24,5 @@ dependencies = [
     "crewai-tools>=0.33.0",
     "alembic>=1.14.1",
     "psycopg2-binary>=2.9.10",
+    "docling>=2.25.0",
 ]
