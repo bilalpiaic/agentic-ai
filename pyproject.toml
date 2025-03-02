@@ -24,10 +24,7 @@ dependencies = [
     "crewai-tools>=0.33.0",
     "alembic>=1.14.1",
     "psycopg2-binary>=2.9.10",
-<<<<<<< HEAD
     "docling>=2.25.0",
-=======
     "pyjwt>=2.10.1",
     "passlib>=1.7.4",
->>>>>>> 1b405d5397f488199aad24e0f51c1b3c2b06580c
 ]

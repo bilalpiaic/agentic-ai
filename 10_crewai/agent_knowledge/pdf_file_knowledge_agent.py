@@ -1,11 +1,10 @@
 from crewai import Agent, Task, Crew, Process, LLM
-from crewai.knowledge.source.string_knowledge_source import StringKnowledgeSource
+from crewai.knowledge.source.pdf_knowledge_source import PDFKnowledgeSource
 import os
 # Create a knowledge source
-content = "Users name is John. He is 30 years old and lives in San Francisco. He loves to play cricket."
-
-string_source = StringKnowledgeSource(
-    content=content,
+content = "Users name is John. He is 30 years old and lives in San Francisco."
+pdf_source = PDFKnowledgeSource(
+    file_paths=["document.pdf"]
 )
 
 # Create an LLM with a temperature of 0 to ensure deterministic outputs
@@ -22,7 +21,6 @@ agent = Agent(
     verbose=True,
     allow_delegation=False,
     llm=llm,
-    
 )
 task = Task(
     description="Answer the following questions about the user: {question}",
@@ -35,7 +33,7 @@ crew = Crew(
     tasks=[task],
     verbose=True,
     process=Process.sequential,
-    knowledge_sources=[string_source], # Enable knowledge by adding the sources here. You can also add more sources to the sources list.
+    knowledge_sources=[pdf_source], # Enable knowledge by adding the sources here. You can also add more sources to the sources list.
 )
 
-result = crew.kickoff(inputs={"question": "What do you know about john?"})
+result = crew.kickoff(inputs={"question": "What city does John live in and how old is he?"})

@@ -2,9 +2,9 @@ from crewai import Agent, Task, Crew, Process, LLM
 from crewai.knowledge.source.text_file_knowledge_source import TextFileKnowledgeSource
 import os
 # Create a knowledge source
-content = "Users name is John. He is 30 years old and lives in San Francisco."
+
 text_source = TextFileKnowledgeSource(
-    file_paths=[".document.txt"]
+    file_paths=["document.txt"]
 )
 
 # Create an LLM with a temperature of 0 to ensure deterministic outputs
