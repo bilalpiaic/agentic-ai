@@ -2,15 +2,15 @@ from config.database import get_db
 from fastapi import APIRouter,Depends,HTTPException
 from models.todo_model import Todos
 from sqlalchemy.orm import Session
+from utils.utils_helper import verify_token
 from validations.validation import TodoCreate
 
 todo_router = APIRouter()
 
-
-
 @todo_router.post("/create")
-def create_todo(user_id, todo: TodoCreate, db: Session  = Depends(get_db)):
+def create_todo(todo: TodoCreate, user=Depends(verify_token), db: Session  = Depends(get_db)):
     try:
+        user_id = user.get("user_id")
         db_todo = Todos(title=todo.title, description=todo.description,
                         completed=todo.completed, user_id=user_id)
         db.add(db_todo)
