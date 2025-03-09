@@ -1,6 +1,15 @@
 import email
+from email import message
 from pydantic import BaseModel,Field,AfterValidator
 from typing_extensions import Annotated
+
+
+class StandardReseponse(BaseModel):
+    message: str = ""
+    data: list = None  # type: ignore
+    status: str = ""
+    # token: str 
+    
 
 
 class TodoCreate(BaseModel):

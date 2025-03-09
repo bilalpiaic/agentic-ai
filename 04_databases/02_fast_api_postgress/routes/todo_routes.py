@@ -1,9 +1,10 @@
+from urllib import response
 from config.database import get_db
 from fastapi import APIRouter,Depends,HTTPException
 from models.todo_model import Todos
 from sqlalchemy.orm import Session
-from utils.utils_helper import verify_token
-from validations.validation import TodoCreate
+from utils.auth_utils import verify_token
+from validations.validation import StandardReseponse, TodoCreate
 
 todo_router = APIRouter()
 
@@ -33,7 +34,7 @@ def create_todo(todo: TodoCreate, user=Depends(verify_token), db: Session  = Dep
 
 
 @todo_router.get("/")
-def get_todos(db: Session = Depends(get_db)):
+def get_todos(user=Depends(verify_token),db: Session = Depends(get_db)):
     try:
         todos = db.query(Todos).all()
         return {
@@ -54,7 +55,7 @@ def get_todos(db: Session = Depends(get_db)):
 
 
 @todo_router.get("/{todo_id}")
-def get_todo(todo_id: int, db: Session = Depends(get_db)):
+def get_todo(todo_id: int, user = Depends(verify_token), db: Session = Depends(get_db)):
     try:
         todo = db.query(Todos).filter(Todos.id == todo_id).first()
         if not todo:
@@ -77,7 +78,7 @@ def get_todo(todo_id: int, db: Session = Depends(get_db)):
 
 
 @todo_router.put("/{todo_id}")
-def update_todo(todo_id: int, todo_update: TodoCreate, db: Session = Depends(get_db)):
+def update_todo(todo_id: int, todo_update: TodoCreate, user = Depends(verify_token), db: Session = Depends(get_db)):
     try: 
         todo = db.query(Todos).filter(Todos.id == todo_id).first()
         if not todo:
@@ -105,7 +106,7 @@ def update_todo(todo_id: int, todo_update: TodoCreate, db: Session = Depends(get
 # Delete a Todo
 
 
-@todo_router.delete("/{todo_id}")
+@todo_router.delete("/{todo_id}",dependencies=[Depends(verify_token)])
 def delete_todo(todo_id: int, db: Session = Depends(get_db)):
     try:
         todo = db.query(Todos).filter(Todos.id == todo_id).first()
