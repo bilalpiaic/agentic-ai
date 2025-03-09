@@ -1,0 +1,2 @@
+first_name,last_name,age,gender,email,phone,street,city,state,zip_code,country,date_of_birth,nationality,occupation,company,linkedin,twitter,hobbies,newsletter,email_notifications,sms_notifications,push_notifications
+John,Doe,30,Male,john.doe@example.com,+1-555-123-4567,123 Main St,New York,NY,10001,USA,1994-05-15,American,Software Engineer,Tech Corp,https://linkedin.com/in/johndoe,https://twitter.com/johndoe,"Reading; Hiking; Gaming",true,true,false,true

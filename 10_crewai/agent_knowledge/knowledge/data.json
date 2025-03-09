@@ -1,0 +1,35 @@
+{
+    "user": {
+      "first_name": "John",
+      "last_name": "Doe",
+      "age": 30,
+      "gender": "Male",
+      "email": "john.doe@example.com",
+      "phone": "+1-555-123-4567",
+      "address": {
+        "street": "123 Main St",
+        "city": "New York",
+        "state": "NY",
+        "zip_code": "10001",
+        "country": "USA"
+      },
+      "date_of_birth": "1994-05-15",
+      "nationality": "American",
+      "occupation": "Software Engineer",
+      "company": "Tech Corp",
+      "social_media": {
+        "linkedin": "https://linkedin.com/in/johndoe",
+        "twitter": "https://twitter.com/johndoe"
+      },
+      "hobbies": ["Reading", "Hiking", "Gaming"],
+      "preferences": {
+        "newsletter": true,
+        "notifications": {
+          "email": true,
+          "sms": false,
+          "push": true
+        }
+      }
+    }
+  }
+  
