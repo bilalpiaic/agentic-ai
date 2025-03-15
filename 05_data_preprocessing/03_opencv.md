@@ -64,6 +64,21 @@ cv2.destroyAllWindows()
 
 ---
 
+### **2. Image Processing**
+Convert an image to grayscale and manipulate pixel values.
+```python
+import cv2
+
+img = cv2.imread('image.jpg', cv2.IMREAD_GRAYSCALE)
+print(img.shape)  # Image shape
+img[50:100, 50:100] = 255  # Modify pixels to white
+cv2.imshow('Modified Image', img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
+
+---
+
 ## **3. Video Capture with OpenCV**
 ```python
 import cv2

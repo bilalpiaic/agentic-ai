@@ -44,7 +44,6 @@ np.ones((2,2))       # 2x2 matrix of ones
 np.eye(3)            # 3x3 Identity matrix
 np.full((2,3), 5)    # 2x3 matrix filled with 5
 np.arange(1, 10, 2)  # Array from 1 to 10 with step 2
-np.linspace(0, 1, 5) # 5 equally spaced numbers between 0 and 1
 ```
 
 ---
@@ -68,7 +67,6 @@ B = np.array([[5, 6], [7, 8]])
 print(A + B)  # Matrix addition
 print(A - B)  # Matrix subtraction
 print(A @ B)  # Matrix multiplication
-print(np.dot(A, B)) # Another way of matrix multiplication
 print(A.T)    # Transpose of A
 ```
 
@@ -116,22 +114,9 @@ print(np.random.rand(3,3))    # 3x3 matrix of random numbers (0 to 1)
 print(np.random.randint(1, 100, (3,3)))  # 3x3 random integers from 1 to 100
 print(np.random.randn(3,3))   # 3x3 matrix of normally distributed random numbers
 ```
-
 ---
 
-## **6. Broadcasting**
-Broadcasting allows operations on arrays of different shapes.
-
-```python
-A = np.array([[1,2,3],[4,5,6]])
-B = np.array([1,2,3])
-
-print(A + B)  # B is broadcasted to match A's shape
-```
-
----
-
-## **7. Real-World Projects Using NumPy**
+## **Real-World Projects Using NumPy**
 ### **1. Analyzing Student Scores**
 Load student scores and compute statistics.
 ```python
@@ -143,31 +128,7 @@ print("Highest Score:", np.max(scores, axis=1)) # Max per student
 
 ---
 
-### **2. Image Processing with NumPy**
-Convert an image to grayscale and manipulate pixel values.
-```python
-import cv2
-
-img = cv2.imread('image.jpg', cv2.IMREAD_GRAYSCALE)
-print(img.shape)  # Image shape
-img[50:100, 50:100] = 255  # Modify pixels to white
-cv2.imshow('Modified Image', img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-```
-
----
-
-### **3. Simulating Dice Rolls**
-```python
-dice = np.random.randint(1, 7, 1000)  # 1000 dice rolls
-print("Mean Roll:", np.mean(dice))
-print("Distribution:\n", np.bincount(dice)[1:])
-```
-
----
-
-### **4. Stock Price Simulation (Monte Carlo)**
+### **2. Stock Price Simulation (Monte Carlo)**
 ```python
 np.random.seed(0)
 days = 365
@@ -183,7 +144,7 @@ plt.show()
 
 ---
 
-### **5. Weather Data Analysis**
+### **3. Weather Data Analysis**
 ```python
 temps = np.random.normal(30, 5, (365,))  # Yearly temperatures
 print("Average Temperature:", np.mean(temps))

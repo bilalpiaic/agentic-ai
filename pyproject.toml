@@ -27,4 +27,6 @@ dependencies = [
     "docling>=2.25.0",
     "pyjwt>=2.10.1",
     "passlib>=1.7.4",
+    "numpy>=1.26.4",
+    "matplotlib>=3.10.1",
 ]
