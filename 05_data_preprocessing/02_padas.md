@@ -219,8 +219,156 @@ for chunk in pd.read_csv("large_data.csv", chunksize=chunk_size):
     process(chunk)  # Process each chunk separately
 ```
 
+Here are **three interesting Pandas projects** with datasets and code that you can use to teach your students. Each project includes **data analysis, visualization, and insights**.
+
 ---
 
-## **Conclusion**
-Pandas is a powerful and flexible tool for data manipulation and analysis. It enables efficient handling of structured data, making it indispensable for data science, machine learning, and business analytics.
+## 📌 **Project 1: IMDb Movie Data Analysis**
+### **Objective:**  
+Analyze IMDb movie data to find top-rated movies, most popular genres, and trends over the years.
 
+### **Dataset:**  
+[Download IMDb Movies Dataset](https://raw.githubusercontent.com/erikgregorywebb/datasets/master/imdb_top_1000.csv)
+
+### **Code:**
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load dataset
+url = "https://raw.githubusercontent.com/erikgregorywebb/datasets/master/imdb_top_1000.csv"
+df = pd.read_csv(url)
+
+# Display first few rows
+print(df.head())
+
+# Convert 'Released_Year' column to numeric
+df['Released_Year'] = pd.to_numeric(df['Released_Year'], errors='coerce')
+
+# Top 10 highest-rated movies
+top_movies = df[['Series_Title', 'IMDB_Rating']].sort_values(by='IMDB_Rating', ascending=False).head(10)
+print("\nTop 10 Highest-Rated Movies:\n", top_movies)
+
+# Count movies by genre
+df['Genre'] = df['Genre'].apply(lambda x: x.split(',')[0])  # Take first genre if multiple
+genre_counts = df['Genre'].value_counts()
+
+# Plot genres
+plt.figure(figsize=(10,5))
+genre_counts.head(10).plot(kind='bar', color='skyblue')
+plt.title("Top 10 Movie Genres in IMDb Dataset")
+plt.xlabel("Genre")
+plt.ylabel("Number of Movies")
+plt.xticks(rotation=45)
+plt.show()
+
+# Trend of movies released over years
+df.groupby('Released_Year').size().plot(kind='line', figsize=(10,5), color='red', marker='o')
+plt.title("Movies Released Over the Years")
+plt.xlabel("Year")
+plt.ylabel("Number of Movies")
+plt.grid()
+plt.show()
+```
+
+
+---
+
+## 📌 **Project 2: Stock Market Data Analysis**
+### **Objective:**  
+Analyze stock price data, calculate moving averages, and visualize stock trends.
+
+### **Dataset:**  
+[Download Apple Stock Data](https://query1.finance.yahoo.com/v7/finance/download/AAPL?period1=1609459200&period2=1640995200&interval=1d&events=history&includeAdjustedClose=true) (Apple Stock Prices for One Year)
+
+### **Code:**
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load dataset
+url = "https://query1.finance.yahoo.com/v7/finance/download/AAPL?period1=1609459200&period2=1640995200&interval=1d&events=history&includeAdjustedClose=true"
+df = pd.read_csv(url)
+
+# Convert 'Date' column to datetime
+df['Date'] = pd.to_datetime(df['Date'])
+
+# Set Date as index
+df.set_index('Date', inplace=True)
+
+# Plot closing price over time
+plt.figure(figsize=(10,5))
+plt.plot(df.index, df['Close'], label="Closing Price", color='blue')
+plt.title("Apple Stock Prices")
+plt.xlabel("Date")
+plt.ylabel("Price (USD)")
+plt.legend()
+plt.grid()
+plt.show()
+
+# Calculate moving average (50-day and 200-day)
+df['50-day MA'] = df['Close'].rolling(window=50).mean()
+df['200-day MA'] = df['Close'].rolling(window=200).mean()
+
+# Plot Moving Averages
+plt.figure(figsize=(10,5))
+plt.plot(df.index, df['Close'], label="Closing Price", color='blue', alpha=0.5)
+plt.plot(df.index, df['50-day MA'], label="50-Day Moving Average", color='red')
+plt.plot(df.index, df['200-day MA'], label="200-Day Moving Average", color='green')
+plt.title("Apple Stock Price with Moving Averages")
+plt.xlabel("Date")
+plt.ylabel("Price (USD)")
+plt.legend()
+plt.grid()
+plt.show()
+```
+
+---
+
+## 📌 **Project 3: COVID-19 Data Analysis**
+### **Objective:**  
+Analyze COVID-19 cases, deaths, and trends across different countries.
+
+### **Dataset:**  
+[Download COVID-19 Data](https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv)
+
+### **Code:**
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load dataset
+url = "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv"
+df = pd.read_csv(url)
+
+# Select relevant columns
+df = df[['location', 'date', 'total_cases', 'total_deaths', 'new_cases', 'new_deaths']]
+df['date'] = pd.to_datetime(df['date'])
+
+# Select data for a specific country
+country = "United States"
+df_country = df[df['location'] == country]
+
+# Plot new cases over time
+plt.figure(figsize=(10,5))
+plt.plot(df_country['date'], df_country['new_cases'], label="New Cases", color='red', alpha=0.7)
+plt.title(f"Daily New COVID-19 Cases in {country}")
+plt.xlabel("Date")
+plt.ylabel("Number of Cases")
+plt.legend()
+plt.grid()
+plt.show()
+
+# Calculate Case Fatality Rate (CFR)
+df_country['CFR'] = (df_country['total_deaths'] / df_country['total_cases']) * 100
+
+# Plot Case Fatality Rate over time
+plt.figure(figsize=(10,5))
+plt.plot(df_country['date'], df_country['CFR'], label="Case Fatality Rate (%)", color='purple')
+plt.title(f"COVID-19 Case Fatality Rate in {country}")
+plt.xlabel("Date")
+plt.ylabel("Fatality Rate (%)")
+plt.legend()
+plt.grid()
+plt.show()
+```
