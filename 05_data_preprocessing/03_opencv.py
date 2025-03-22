@@ -1,53 +1,34 @@
 import cv2
-import numpy as np
+
+# Load the pre-trained Haar cascade classifier for face detection
+face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
 
 # Capture video from webcam
-cap = cv2.VideoCapture(0)
-
-# Define the color range for detection (e.g., Blue)
-lower_color = np.array([100, 150, 0])  # Lower HSV boundary
-upper_color = np.array([140, 255, 255])  # Upper HSV boundary
-
-# Initialize canvas (it will be resized to match the frame size)
-canvas = None  
+cap = cv2.VideoCapture(0)  # 0 = Default webcam
 
 while True:
+    # Read a frame from the webcam
     ret, frame = cap.read()
     if not ret:
         break
 
-    # Convert frame to HSV color space
-    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+    # Convert frame to grayscale
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-    # Create mask to detect the specified color
-    mask = cv2.inRange(hsv, lower_color, upper_color)
+    # Detect faces in the grayscale frame
+    faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=4, minSize=(30, 30))
 
-    # Find contours of the detected color
-    contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    # Draw rectangles around detected faces
+    for (x, y, w, h) in faces:
+        cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 3)  # Green rectangle
 
-    # Initialize canvas after getting frame size
-    if canvas is None:
-        canvas = np.zeros_like(frame)  # Ensure same size & channels as frame
-
-    if contours:
-        largest_contour = max(contours, key=cv2.contourArea)
-        if cv2.contourArea(largest_contour) > 1000:  # Minimum area threshold
-            x, y, w, h = cv2.boundingRect(largest_contour)
-            center = (x + w // 2, y + h // 2)
-
-            # Draw on canvas
-            cv2.circle(canvas, center, 5, (255, 0, 0), -1)  # Blue dot
-
-    # Merge canvas with frame
-    blended = cv2.addWeighted(frame, 0.7, canvas, 0.3, 0)
-
-    # Display the result
-    cv2.imshow("Virtual Painter", blended)
-    cv2.imshow("Mask", mask)  # Show the color mask
+    # Display the frame with detected faces
+    cv2.imshow("Live Face Detection", frame)
 
     # Exit if 'q' is pressed
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
+# Release the webcam and close all windows
 cap.release()
 cv2.destroyAllWindows()
