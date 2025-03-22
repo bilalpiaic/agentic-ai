@@ -229,6 +229,35 @@ if cv2.waitKey(0) == 27:
 ---
 
 ## **5. Face Detection using Haar Cascades**
+
+
+### Load Pre-Trained Face Detection Model
+```python
+face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+```
+- `cv2.CascadeClassifier()` loads a **Haar cascade classifier**, a pre-trained model for face detection.
+- `cv2.data.haarcascades` provides the path to OpenCV's built-in Haar cascade files.
+- `"haarcascade_frontalface_default.xml"` is the XML file containing trained data for **frontal face detection**.
+
+---
+
+### Detect Faces
+```python
+faces = face_cascade.detectMultiScale(gray, 1.1, 4)
+```
+- **`detectMultiScale()`** detects objects (faces in this case).
+- **Parameters**:
+  - `gray`: The grayscale input image.
+  - `1.1`: **Scale factor** – Specifies how much the image size is reduced at each image scale.
+    - **1.1** means the image is scaled down by 10% at each step.
+  - `4`: **Min neighbors** – Defines how many neighbors a rectangle needs to be considered a face.
+    - Higher values reduce false positives but may miss some faces.
+
+- **Returns**: A list of bounding boxes for detected faces.
+  - Each detected face is represented as `(x, y, w, h)`, where:
+    - `(x, y)`: **Top-left corner** of the face.
+    - `(w, h)`: **Width and height** of the face.
+
 ```python
 import cv2
 
@@ -250,6 +279,15 @@ cv2.imshow("Face Detection", image)
 if cv2.waitKey(0) == 27:
     cv2.destroyAllWindows()
 ```
+### Final Output
+- The program detects faces in the image and draws blue rectangles around them.
+- This method works well for **frontal faces** but may struggle with:
+  - Side profiles
+  - Poor lighting
+  - Small/distant faces
+
+For better accuracy, **deep learning-based models** like OpenCV’s **DNN face detector** or **Mediapipe Face Detection** can be used.
+
 
 ---
 

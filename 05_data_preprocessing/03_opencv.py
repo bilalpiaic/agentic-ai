@@ -1,17 +1,9 @@
 import cv2
 
-# Open webcam
-cap = cv2.VideoCapture(0)
+image = cv2.imread("apple.jpg", 0)  # Convert to grayscale
 
-while True:
-    ret, frame = cap.read()
-    if not ret:
-        break
-    cv2.imshow("Webcam Feed", frame)
-    
-    # Press 'q' to exit
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+edges = cv2.Canny(image, 100, 200)  # Canny edge detection
 
-cap.release()
-cv2.destroyAllWindows()
+cv2.imshow("Edges", edges)
+if cv2.waitKey(0) == 27:
+    cv2.destroyAllWindows()
