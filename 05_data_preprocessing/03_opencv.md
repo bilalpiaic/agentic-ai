@@ -148,6 +148,15 @@ if cv2.waitKey(0) == 27:
 ---
 
 ## **3. Video Capture with OpenCV**
+- **`cap.read()`** captures a frame from the webcam.
+- It returns **two values**:
+  1. **`ret`** (Boolean): Indicates whether the frame was successfully captured.
+     - `True` → Frame was captured successfully.
+     - `False` → Frame capture failed (e.g., camera not available).
+  2. **`frame`** (NumPy array): The actual image/frame captured.
+
+
+
 ```python
 import cv2
 
@@ -172,6 +181,39 @@ cv2.destroyAllWindows()
 ---
 
 ## **4. Edge Detection using Canny**
+Let's break down the code step by step:
+
+```python
+image = cv2.imread("sample.jpg", 0)  # Convert to grayscale
+```
+
+### `cv2.imread()`
+- This function reads an image from a file.
+- `"sample.jpg"` is the filename of the image.
+- `0` is the flag for loading the image in **grayscale mode**.
+  - `0` → Grayscale image (single-channel)
+  - `1` → Color image (BGR)
+  - `-1` → Unchanged (keeps alpha channel if present)
+
+### `cv2.Canny()`
+- This function performs **Canny edge detection**, which is used to detect edges in an image.
+- **Parameters**:
+  - **`image`**: The input grayscale image.
+  - **`100`**: The **lower threshold** for edge detection.
+  - **`200`**: The **upper threshold** for edge detection.
+
+### How Canny Edge Detection Works:
+1. **Noise Reduction** – Applies a Gaussian blur to reduce noise.
+2. **Gradient Calculation** – Computes the intensity gradient of the image.
+3. **Non-Maximum Suppression** – Removes unwanted pixels to get thin edges.
+4. **Double Thresholding** – Uses `100` (low) and `200` (high) as thresholds:
+   - Pixels with gradient **above 200** are edges (strong edges).
+   - Pixels **between 100 and 200** are weak edges (considered if connected to strong edges).
+   - Pixels **below 100** are discarded.
+5. **Edge Tracking by Hysteresis** – Determines final edges by linking weak edges to strong ones.
+
+
+
 ```python
 import cv2
 
