@@ -9,7 +9,7 @@ NumPy (Numerical Python) is an open-source Python library for numerical computin
 
 ### **Installation**
 ```bash
-pip install numpy
+uv add numpy
 ```
 
 ---

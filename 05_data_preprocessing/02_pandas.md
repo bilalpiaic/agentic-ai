@@ -6,7 +6,7 @@ Pandas is a powerful Python library for data analysis and manipulation. It provi
 ## **1. Installation**
 To install pandas, use:
 ```bash
-pip install pandas
+uv add pandas
 ```
 Or for conda users:
 ```bash
@@ -286,12 +286,18 @@ Analyze stock price data, calculate moving averages, and visualize stock trends.
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Load dataset
-url = "https://query1.finance.yahoo.com/v7/finance/download/AAPL?period1=1609459200&period2=1640995200&interval=1d&events=history&includeAdjustedClose=true"
-df = pd.read_csv(url)
+df = pd.read_csv('HistoricalQuotes.csv')
+
+# Strip spaces from column names
+df.columns = df.columns.str.strip()
 
 # Convert 'Date' column to datetime
 df['Date'] = pd.to_datetime(df['Date'])
+
+# Convert numerical columns (remove '$' and ',' before converting to float)
+numeric_cols = ['Close', 'Open', 'High', 'Low']
+for col in numeric_cols:
+    df[col] = df[col].replace({'\$': '', ',': ''}, regex=True).astype(float)
 
 # Set Date as index
 df.set_index('Date', inplace=True)
@@ -340,6 +346,18 @@ import matplotlib.pyplot as plt
 # Load dataset
 url = "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv"
 df = pd.read_csv(url)
+
+# Strip spaces from column names
+df.columns = df.columns.str.strip()
+
+# Rename columns to match expected format
+df = df.rename(columns={
+    'Country/Region': 'location',
+    'Confirmed': 'total_cases',
+    'Deaths': 'total_deaths',
+    'New cases': 'new_cases',
+    'New deaths': 'new_deaths'
+})
 
 # Select relevant columns
 df = df[['location', 'date', 'total_cases', 'total_deaths', 'new_cases', 'new_deaths']]

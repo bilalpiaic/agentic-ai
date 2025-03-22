@@ -29,8 +29,8 @@ image = cv2.imread("sample.jpg")
 cv2.imshow("Image", image)
 
 # Wait for keypress and close
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+if cv2.waitKey(0) == 27:
+    cv2.destroyAllWindows()
 ```
 
 ### **Basic Image Operations**
@@ -41,6 +41,74 @@ cv2.destroyAllWindows()
 ---
 
 ## **2. Drawing Shapes on Images**
+
+In OpenCV, functions like `cv2.rectangle()`, `cv2.circle()`, and `cv2.line()` are used for drawing shapes on images. Each function takes specific parameters, which I’ll explain below:
+
+---
+
+### `cv2.rectangle()`
+This function is used to draw a rectangle on an image.
+
+**Syntax:**
+```python
+cv2.rectangle(image, pt1, pt2, color, thickness)
+```
+**Parameters:**
+- **`image`**: The image on which to draw the rectangle.
+- **`pt1`**: The top-left corner of the rectangle (x, y).
+- **`pt2`**: The bottom-right corner of the rectangle (x, y).
+- **`color`**: The color of the rectangle (B, G, R) in a tuple, e.g., `(255, 0, 0)` for blue.
+- **`thickness`**: Thickness of the rectangle border (in pixels). Use `-1` to fill the rectangle.
+
+**Example:**
+```python
+cv2.rectangle(img, (50, 50), (200, 200), (0, 255, 0), 3)
+```
+
+---
+
+### `cv2.circle()`
+This function is used to draw a circle on an image.
+
+**Syntax:**
+```python
+cv2.circle(image, center, radius, color, thickness)
+```
+**Parameters:**
+- **`image`**: The image on which to draw the circle.
+- **`center`**: The center of the circle (x, y).
+- **`radius`**: The radius of the circle in pixels.
+- **`color`**: The color of the circle (B, G, R) in a tuple.
+- **`thickness`**: The thickness of the circle border (in pixels). Use `-1` to fill the circle.
+
+**Example:**
+```python
+cv2.circle(img, (150, 150), 50, (255, 0, 0), -1)
+```
+
+---
+
+### `cv2.line()`
+This function is used to draw a line on an image.
+
+**Syntax:**
+```python
+cv2.line(image, pt1, pt2, color, thickness)
+```
+**Parameters:**
+- **`image`**: The image on which to draw the line.
+- **`pt1`**: The starting point of the line (x, y).
+- **`pt2`**: The ending point of the line (x, y).
+- **`color`**: The color of the line (B, G, R) in a tuple.
+- **`thickness`**: The thickness of the line in pixels.
+
+**Example:**
+```python
+cv2.line(img, (50, 50), (200, 200), (0, 0, 255), 2)
+```
+
+
+
 ```python
 import cv2
 import numpy as np
@@ -58,8 +126,8 @@ cv2.circle(canvas, (300, 300), 50, (255, 0, 0), -1)
 cv2.line(canvas, (100, 100), (400, 400), (0, 0, 255), 5)
 
 cv2.imshow("Shapes", canvas)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+if cv2.waitKey(0) == 27:
+    cv2.destroyAllWindows()
 ```
 
 ---
@@ -73,8 +141,8 @@ img = cv2.imread('image.jpg', cv2.IMREAD_GRAYSCALE)
 print(img.shape)  # Image shape
 img[50:100, 50:100] = 255  # Modify pixels to white
 cv2.imshow('Modified Image', img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+if cv2.waitKey(0) == 27:
+    cv2.destroyAllWindows()
 ```
 
 ---
@@ -112,8 +180,8 @@ image = cv2.imread("sample.jpg", 0)  # Convert to grayscale
 edges = cv2.Canny(image, 100, 200)  # Canny edge detection
 
 cv2.imshow("Edges", edges)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+if cv2.waitKey(0) == 27:
+    cv2.destroyAllWindows()
 ```
 
 ---
@@ -137,8 +205,8 @@ for (x, y, w, h) in faces:
     cv2.rectangle(image, (x, y), (x + w, y + h), (255, 0, 0), 3)
 
 cv2.imshow("Face Detection", image)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+if cv2.waitKey(0) == 27:
+    cv2.destroyAllWindows()
 ```
 
 ---
