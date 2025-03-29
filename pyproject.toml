@@ -31,4 +31,6 @@ dependencies = [
     "matplotlib>=3.10.1",
     "pandas>=2.2.3",
     "opencv-python>=4.11.0.86",
+    "nltk>=3.9.1",
+    "openai-agents>=0.0.6",
 ]
