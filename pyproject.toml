@@ -1,6 +1,6 @@
 [project]
 name = "agentic-ai"
-requires-python = ">=3.11,<3.13"
+requires-python = ">=3.11"
 version = "0.1.0"
 description = "agentic AI course repo"
 authors = [
@@ -35,3 +35,6 @@ dependencies = [
     "openai-agents>=0.0.6",
     "tensorflow>=2.14.0",
 ]
+
+[tool.uv.workspace]
+members = ["openai-agent-sdk"]
