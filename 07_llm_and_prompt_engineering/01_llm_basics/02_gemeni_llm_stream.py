@@ -1,8 +1,6 @@
 from langchain_google_genai import GoogleGenerativeAI
-from langchain_core.prompts import PromptTemplate
 from dotenv import load_dotenv
 import os
-import sys
 load_dotenv()
 
 
@@ -12,6 +10,7 @@ llm = GoogleGenerativeAI(
     )
 
 question = input("Enter you prompt: ")
+
 
 for chunk in llm.stream(question):
     print(chunk)
