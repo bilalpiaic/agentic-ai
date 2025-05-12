@@ -1,6 +1,5 @@
-import asyncio
 from openai import AsyncOpenAI
-from agents import Agent, OpenAIChatCompletionsModel, Runner, set_tracing_disabled
+from agents import Agent, OpenAIChatCompletionsModel, Runner
 import os
 from dotenv import load_dotenv
 from pydantic import BaseModel
@@ -24,7 +23,7 @@ agent = Agent(
     name="Assistant",
     instructions="You are a Quiz Agent. You generate quizes",
     model=OpenAIChatCompletionsModel(model="gemini-2.0-flash", openai_client=client),
-    output_type=Quiz
+    # output_type=Quiz
 )
 
 query = input("Enter the query: ")

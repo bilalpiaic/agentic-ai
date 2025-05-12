@@ -133,3 +133,6 @@ This structured course ensures a comprehensive journey from fundamental concepts
 
 
 ![alt text](outline.png)
+
+### Agents
+![alt text](agent.png)

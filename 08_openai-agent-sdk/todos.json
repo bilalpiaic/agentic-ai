@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "title": "Buy groceries",
+    "description": "Get milk, eggs, bread, and fruits",
+    "completed": false,
+    "dueDate": "2025-05-06"
+  },
+  {
+    "id": 2,
+    "title": "Finish project report",
+    "description": "Complete the final draft and send to team",
+    "completed": false,
+    "dueDate": "2025-05-08"
+  },
+  {
+    "id": 3,
+    "title": "Call dentist",
+    "description": "Schedule appointment for checkup",
+    "completed": true,
+    "dueDate": "2025-05-04"
+  },
+  {
+    "id": 4,
+    "title": "Exercise",
+    "description": "Go for a 30-minute run",
+    "completed": false,
+    "dueDate": "2025-05-05"
+  },
+  {
+    "id": 5,
+    "title": "purchase AC",
+    "description": "will visit lahore today, i need to do actions like purchase few things",
+    "completed": false,
+    "dueDate": "2025-05-04"
+  }
+]
