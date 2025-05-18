@@ -1,6 +1,5 @@
-import asyncio
 from openai import AsyncOpenAI
-from agents import Agent, OpenAIChatCompletionsModel, Runner, set_tracing_disabled
+from agents import Agent, OpenAIChatCompletionsModel, Runner
 import os
 from dotenv import load_dotenv
 
@@ -20,22 +19,16 @@ agent = Agent(
     model=OpenAIChatCompletionsModel(model="gemini-2.0-flash", openai_client=client),
 )
 
+copied_agent = Agent(
+    name="Secondary Assistant",
+    model=OpenAIChatCompletionsModel(model="gemini-2.0-flash", openai_client=client),
+)
 
-history = []
+query = input("Enter the query: ")
 
-while True:
+result = Runner.run_sync(
+    copied_agent,
+    query,
+)
 
-    query = input("Enter the query: ")
-
-    history.append({"role": "user", "content": query})
-
-    result = Runner.run_sync(
-        agent,
-        history,
-    )
-
-    li = result.to_input_list()
-    history.extend(li)
-    print("messages list:", history)
-
-    print(result.final_output)
+print(result.final_output)
