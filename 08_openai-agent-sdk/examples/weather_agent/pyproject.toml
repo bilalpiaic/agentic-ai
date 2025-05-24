@@ -1,0 +1,29 @@
+[project]
+name = "weather-agent-py"
+version = "0.1.0"
+description = "A powerful weather assistant built using OpenAI's Agent SDK that provides detailed weather information for any location worldwide"
+readme = "README.md"
+requires-python = ">=3.13"
+license = {text = "MIT"}
+authors = [
+    {name = "Your Name", email = "your.email@example.com"}
+]
+keywords = ["weather", "openai", "agent", "ai", "assistant", "climate"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Atmospheric Science",
+]
+dependencies = [
+    "openai-agents>=0.0.11",
+    "requests>=2.32.3",
+    "python-dotenv>=1.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/weather-agent"
+Repository = "https://github.com/yourusername/weather-agent.git"
+Issues = "https://github.com/yourusername/weather-agent/issues"
