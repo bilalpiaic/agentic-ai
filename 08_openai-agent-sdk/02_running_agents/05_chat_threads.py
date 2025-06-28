@@ -36,6 +36,5 @@ while True:
 
     li = result.to_input_list()
     history.extend(li)
-    print("messages list:", history)
 
     print(result.final_output)

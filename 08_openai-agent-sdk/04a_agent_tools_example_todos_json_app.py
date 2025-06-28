@@ -1,6 +1,6 @@
+
 import json
 from openai import AsyncOpenAI
-from regex import E
 from agents import Agent, OpenAIChatCompletionsModel, Runner,function_tool
 import os
 from dotenv import load_dotenv
@@ -42,7 +42,7 @@ def add_todo(title: str, description: str = "", due_date: str = "") -> Dict[str,
         due_date: Optional due date in YYYY-MM-DD format.
     
     Returns:
-        The newly created todo item.
+        The newly created todo item title.
     """
     try:
         # Read existing todos
